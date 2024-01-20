@@ -1,0 +1,31 @@
+
+
+var builder = WebApplication.CreateBuilder(new WebApplicationOptions
+{
+    WebRootPath = "content"
+});
+//builder.Services.AddCors();
+
+var app = builder.Build();
+//app.UseCors();
+app.UseStaticFiles(new StaticFileOptions
+{
+    ServeUnknownFileTypes = true,
+    OnPrepareResponse = (context) =>
+    {
+        string fileName = context.File.Name;
+        app.Logger.LogInformation(fileName);
+
+        context.Context.Response.Headers.Append("Cross-Origin-Embedder-Policy", "require-corp");
+        context.Context.Response.Headers.Append("Cross-Origin-Opener-Policy", "same-origin");
+
+    }
+});
+app.MapGet("/", () =>
+{
+
+    return "Hello World!";
+});
+
+
+app.Run();
