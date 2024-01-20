@@ -26,6 +26,8 @@ app.UseStaticFiles(new StaticFileOptions
 
     }
 });
+
+app.MapDefaultControllerRoute();
 app.MapGet("/", () =>
 {
 
