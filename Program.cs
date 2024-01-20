@@ -10,7 +10,7 @@ var builder = WebApplication.CreateBuilder(new WebApplicationOptions
 //builder.Services.AddCors();
 
 var app = builder.Build();
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 //app.UseCors();
 app.UseStaticFiles(new StaticFileOptions
